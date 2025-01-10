@@ -1,14 +1,14 @@
 import { use } from "react";
-import { currencyFormatter } from "../util/formatting";
-import Button from "./UI/Button";
-import { CartContext } from "../store/CartContext";
+import { currencyFormatter } from "../../util/formatting";
+import Button from "../UI/Button";
+import { CartContext } from "../../store/CartContext";
 
 export default function MealItem({ id, name, description, price, image }) {
-    const cartCtx = use(CartContext);
+    const { addItem } = use(CartContext);
 
     function handleAddMealToCart() {
-        cartCtx.addItem({
-             id, name, description, price, image,
+        addItem({
+            id, name, description, price, image,
         });
     }
 
