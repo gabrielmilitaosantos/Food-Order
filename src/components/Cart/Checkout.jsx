@@ -1,4 +1,4 @@
-import { use } from "react";
+import { use, useActionState } from "react";
 
 import Modal from "../UI/Modal";
 import Input from "../UI/Input";
@@ -20,9 +20,39 @@ export default function Checkout() {
         progressCtx.hideCheckout();
     }
 
+    function submitAction(prevValue, formData) {
+        const fullName = formData.get("full-name");
+        const email = formData.get("email");
+        const street = formData.get("street");
+        const postalCode = formData.get("postal-code");
+        const city = formData.get("city");
+
+        fetch("http://localhost:3000/orders", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                order: {
+                    items: items,
+                    customer: {
+                        name: fullName,
+                        email,
+                        street,
+                        "postal-code": postalCode,
+                        city,
+                    }
+                }
+            })
+        });
+        
+    }
+
+    const [formState, formAction, pending] = useActionState(submitAction, { data: null });
+
     return (
         <Modal open={progressCtx.progress === "checkout"} onClose={handleClose}>
-            <form>
+            <form action={formAction}>
                 <h2>Checkout</h2>
                 <p>Total amount: {currencyFormatter.format(cartTotal)}</p>
 
