@@ -11,18 +11,34 @@ Make sure you have Node.js installed on your machine.
 ### Installation
 
 - Clone the repository: <br>
-  git clone https://github.com/gabrielmilitaosantos/food-order-app.git
-  
-- Navigate to the project folder: <br>
-  cd food-order-app
+  git clone https://github.com/gabrielmilitaosantos/Food-Order.git
 
-- Install dependencies: <br>
+- Navigate to the project folder: <br>
+  cd Food-Order
+
+- Install frontend dependencies: <br>
   npm install
 
-- Start the development server: <br>
-  npm run dev
+- Install backend dependencies: <br>
+  cd backend <br>
+  npm install
 
 ### Usage
+
+This project requires **two terminal windows running at the same time** — one for the backend, one for the frontend.
+
+**Terminal 1 — Backend:**
+
+```bash
+cd backend
+npm start
+```
+
+**Terminal 2 — Frontend** (from the project root):
+
+```bash
+npm run dev
+```
 
 - Browse the available food items.
 - Add items to your cart.
